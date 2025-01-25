@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body{margin:0;font-family:Arial,sans-serif;background:url('/static/wave.png.png') no-repeat center center fixed;background-size:cover;color:#ffffff;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;}
+        .container{text-align:center;background:rgba(255,255,255,0.1);padding:2rem;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.2);animation:fadeIn 2s;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+        h1{margin-bottom:1rem;font-size:2rem;}
+        input{width:80%;padding:0.8rem;border:none;border-radius:5px;margin-bottom:1rem;font-size:1rem;}
+        select{width:83%;padding:0.8rem;border:none;border-radius:5px;margin-bottom:1rem;font-size:1rem;}
+        button{padding:0.8rem 2rem;border:none;border-radius:5px;background:#ff416c;color:#fff;font-size:1rem;cursor:pointer;transition:background 0.3s;}
+        button:hover{background:#ff4b2b;}
+        .output{margin-top:1rem;}
+        .footer{position:absolute;bottom:10px;text-align:center;color:#fff;font-size:0.9rem;}
+        .footer a{color:#ffffff;text-decoration:none;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Downloader</h1>
+        <input type="text" id="url" placeholder="Enter YouTube Video URL">
+        <select id="resolution">
+            <option value="360p">360p</option>
+            <option value="480p">480p</option>
+            <option value="720p">720p</option>
+            <option value="1080p">1080p</option>
+            <option value="4k">4K</option>
+        </select>
+        <button onclick="downloadVideo()">Download</button>
+        <div class="output" id="output"></div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 YouTube Downloader. All rights reserved. | <a href="#" onclick="contactUs()">Contact Us</a></p>
+    </div>
+    <script>
+        async function downloadVideo() {
+            const url = document.getElementById('url').value;
+            const resolution = document.getElementById('resolution').value;
+            const output = document.getElementById('output');
+            output.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            try {
+                const response = await fetch('http://127.0.0.1:5000/download', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({url, resolution})
+                });
+                const data = await response.json();
+                output.innerHTML = data.success ? `<a href="${data.download_url}" target="_blank">Download your video</a>` : `<span style="color:red;"> ${data.error}</span>`;
+            } catch {
+                output.innerHTML = `<span style="color:red;">An unexpected error occurred!</span>`;
+            }
+        }
+        function contactUs() {
+            alert('Contact us at: 22bsccs03@thiruthangalnadarcollede.edu.in');
+        }
+    </script>
+</body>
+</html>
