@@ -14,7 +14,6 @@
 ✅ Simple & intuitive UI with resolution selection
 ✅ Error handling and user-friendly notifications
 
-## 📸 Screenshot
 
 
 
