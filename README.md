@@ -22,8 +22,8 @@
 1️⃣ **Clone the Repository**
 
 ```bash
- git clone https://github.com/your-username/youtube-video-downloader.git
- cd youtube-video-downloader
+ git clone https://github.com/karthikeyan1124/video-downloaders.git
+ cd video-downloader
 ```
 
 2️⃣ **Install Dependencies**
