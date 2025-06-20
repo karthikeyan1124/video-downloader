@@ -44,8 +44,6 @@
  http://127.0.0.1:5000
 ```
 
-![Screenshot (25)](https://github.com/user-attachments/assets/d83f14fb-ef57-4803-a47b-aea2e8c4b3a7)
-
 ## 🎯 How to Use
 
 1️⃣ Enter the **YouTube video URL** in the input field.
